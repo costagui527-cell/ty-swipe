@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="referrer" content="no-referrer">
+
+<title>TY SWIPE · Viral Intelligence &amp; Criativos</title>
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="assets/swipe.css?v=20261009_v3">
+<link rel="stylesheet" href="assets/madruga.css?v=20261009_v3">
+
+<header class="bar">
+  <div class="madruga-header-container">
+    
+    <!-- Linha 1: Marca + Abas Principais + Status/Ação -->
+    <div class="madruga-nav-bar">
+      <div class="marca">
+        <div class="madruga-logo" role="img" aria-label="TY SWIPE">
+          <span class="madruga-logo-mark" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="grad-m" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00F0FF"/>
+                  <stop offset="50%" stop-color="#3B82F6"/>
+                  <stop offset="100%" stop-color="#8B5CF6"/>
+                </linearGradient>
+              </defs>
+              <rect width="32" height="32" rx="8" fill="#0A0E17" stroke="url(#grad-m)" stroke-width="1.8"/>
+              <path d="M7 23V9L16 17L25 9V23" stroke="url(#grad-m)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div class="madruga-brand-text">
+            <div class="madruga-brand-row">
+              <span class="madruga-logo-name">TY SWIPE</span>
+              <span class="madruga-badge-vip">PRO VIP</span>
+            </div>
+            <span class="por-madruga">BY TY</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="abas" role="tablist" aria-label="Navegação">
+        <button class="aba ativa" id="aba-swipers" type="button" role="tab" aria-controls="swipers" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9" cy="7.5" r="3.5"/><path d="M22 20v-1.5a4 4 0 0 0-3-3.87"/><path d="M16 4.13a3.5 3.5 0 0 1 0 6.75"/></svg>
+          Swipers
+        </button>
+        <button class="aba" id="aba-criativos" type="button" role="tab" aria-controls="vista-criativos" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          Biblioteca
+        </button>
+        <button class="aba" id="aba-meu" type="button" role="tab" aria-controls="vista-criativos" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1V21l-6.5-4-6.5 4V4.5a1 1 0 0 1 1-1z"/></svg>
+          Meu Swipe
+        </button>
+      </nav>
+
+      <div class="madruga-nav-actions">
+        <span class="madruga-badge-status" title="Base local de dados e busca ultrarrápida 100% offline">
+          <span class="status-pulse"></span>
+          100% Local Offline
+        </span>
+        <button class="btn-sync-action" id="btn-sync-main" type="button" title="Sincronizar todos os perfis e atualizar métricas agora">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          Sincronizar Todos
+        </button>
+        <button class="btn-sync-custom-action" id="btn-sync-custom" type="button" onclick="window.abrirModalSyncCustom()" title="Sincronizar uma conta específica agora" style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.35);color:#00F0FF;font-size:12px;font-weight:600;padding:7px 12px;border-radius:6px;cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3-3m0 0l-3 3m3-3v8"/></svg>
+          Sincronizar @Conta
+        </button>
+        <button class="btn-novo-perfil-action" id="btn-add-perfil" type="button" title="Monitorar novo perfil de Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          + Perfil
+        </button>
+        <button class="btn-sessao-action" id="btn-ig-session" type="button" onclick="window.abrirModalSession()" title="Conectar Cookie de Sessão do Instagram para busca ao vivo sem bloqueios" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);color:#E2E8F0;font-size:12px;font-weight:600;padding:7px 12px;border-radius:6px;cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Sessão IG
+        </button>
+      </div>
+    </div>
+
+    <!-- Linha 2: Título do Conteúdo + Controles Contextuais -->
+    <div class="madruga-toolbar-bar">
+      <div class="cabeca-pagina">
+        <h1 id="titulo-pagina">Swipers</h1>
+        <div class="sub" id="sub-pagina"></div>
+      </div>
+
+      <div class="controles-swipers" id="controles-swipers">
+        <label class="busca busca-swipers">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="q-swipers" type="search" placeholder="Buscar perfil por @ ou nome…" autocomplete="off">
+        </label>
+        <select id="filtro-nicho-swipers" aria-label="Filtrar por Nicho" class="filtro-nicho-sel">
+          <option value="">Todos os Nichos</option>
+          <option value="🌿 Saúde, Nutra &amp; Medicina Natural">🌿 Saúde, Nutra &amp; Medicina Natural</option>
+          <option value="🍳 Receitas &amp; Culinária Saudável">🍳 Receitas &amp; Culinária Saudável</option>
+          <option value="💪 Fitness, Treino &amp; Emagrecimento">💪 Fitness, Treino &amp; Emagrecimento</option>
+          <option value="✨ Beleza, Skincare &amp; Cabelo">✨ Beleza, Skincare &amp; Cabelo</option>
+          <option value="🎬 Curiosidades, Fatos &amp; Cortes">🎬 Curiosidades, Fatos &amp; Cortes</option>
+          <option value="💰 Negócios, Marketing &amp; Finanças">💰 Negócios, Marketing &amp; Finanças</option>
+          <option value="🧠 Desenvolvimento Pessoal &amp; Mindset">🧠 Desenvolvimento Pessoal &amp; Mindset</option>
+          <option value="🏡 Casa, Família &amp; Estilo de Vida">🏡 Casa, Família &amp; Estilo de Vida</option>
+          <option value="🌐 Geral / Outros">🌐 Geral / Outros</option>
+        </select>
+        <button type="button" class="btn-ver-criativos-nicho" id="btn-ver-criativos-nicho" style="display:none;" title="Ver todos os criativos deste nicho na Biblioteca">Ver Criativos do Nicho →</button>
+        <select id="ordem-perfis" aria-label="Ordenar perfis" class="ordem-perfis-sel">
+          <option value="views">Mais views</option>
+          <option value="likes">Mais curtidas</option>
+          <option value="engajamento">Maior engajamento</option>
+          <option value="criativos">Mais criativos</option>
+          <option value="seguidores">Mais seguidores</option>
+          <option value="alcance">Maior alcance (views/seg)</option>
+        </select>
+      </div>
+
+      <div class="controles-criativos" id="controles-criativos" hidden>
+        <label class="busca">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="q" type="search" placeholder="Buscar transcrição, legenda, perfil, gancho, hashtags…" autocomplete="off">
+        </label>
+        <select id="filtro-perfil" aria-label="Filtrar por Perfil">
+          <option value="">Todos os perfis</option>
+        </select>
+        <select id="filtro-nicho" aria-label="Filtrar por Nicho" class="filtro-nicho-sel">
+          <option value="">Todos os Nichos</option>
+          <option value="🌿 Saúde, Nutra &amp; Medicina Natural">🌿 Saúde, Nutra &amp; Medicina Natural</option>
+          <option value="🍳 Receitas &amp; Culinária Saudável">🍳 Receitas &amp; Culinária Saudável</option>
+          <option value="💪 Fitness, Treino &amp; Emagrecimento">💪 Fitness, Treino &amp; Emagrecimento</option>
+          <option value="✨ Beleza, Skincare &amp; Cabelo">✨ Beleza, Skincare &amp; Cabelo</option>
+          <option value="🎬 Curiosidades, Fatos &amp; Cortes">🎬 Curiosidades, Fatos &amp; Cortes</option>
+          <option value="💰 Negócios, Marketing &amp; Finanças">💰 Negócios, Marketing &amp; Finanças</option>
+          <option value="🧠 Desenvolvimento Pessoal &amp; Mindset">🧠 Desenvolvimento Pessoal &amp; Mindset</option>
+          <option value="🏡 Casa, Família &amp; Estilo de Vida">🏡 Casa, Família &amp; Estilo de Vida</option>
+          <option value="🌐 Geral / Outros">🌐 Geral / Outros</option>
+        </select>
+        <select id="filtro-periodo" aria-label="Filtrar por período de publicação">
+          <option value="">Qualquer período</option>
+          <option value="24h">Últimas 24 horas</option>
+          <option value="3d">Últimos 3 dias</option>
+          <option value="7d">Últimos 7 dias</option>
+          <option value="15d">Últimos 15 dias</option>
+          <option value="30d">Últimos 30 dias</option>
+          <option value="60d">Últimos 60 dias</option>
+          <option value="90d">Últimos 90 dias</option>
+          <option value="365d">Último ano</option>
+        </select>
+        <select id="filtro-views" aria-label="Filtrar por mínimo de views">
+          <option value="">Qualquer nº de views</option>
+          <option value="1000">Acima de 1 mil views</option>
+          <option value="5000">Acima de 5 mil</option>
+          <option value="10000">Acima de 10 mil</option>
+          <option value="50000">Acima de 50 mil</option>
+          <option value="100000">Acima de 100 mil</option>
+          <option value="500000">Acima de 500 mil</option>
+          <option value="1000000">Acima de 1 milhão</option>
+        </select>
+        <select id="filtro-status" aria-label="Filtrar por Status de Download">
+          <option value="">Todos os status</option>
+          <option value="BAIXADO">Baixados</option>
+          <option value="PENDENTE">Pendentes</option>
+          <option value="TOP15">Top 15</option>
+          <option value="COM_CAPA">Com capa</option>
+        </select>
+        <select id="ordem" aria-label="Ordenar">
+          <option value="metrica">Mais views</option>
+          <option value="likes">Mais curtidas</option>
+          <option value="comentarios">Mais comentários</option>
+          <option value="engajamento">Maior engajamento</option>
+          <option value="likes_views">Mais curtido por view</option>
+          <option value="comentarios_views">Mais comentado por view</option>
+          <option value="tracao">Mais tração recente</option>
+          <option value="views_dia">Mais views por dia</option>
+          <option value="recente">Mais recente</option>
+          <option value="antigo">Mais tempo no ar</option>
+          <option value="duracao">Mais curto</option>
+          <option value="numero">Nº do criativo</option>
+        </select>
+        <select id="ordem2" aria-label="Critério de desempate">
+          <option value="">Sem desempate</option>
+          <option value="metrica">Mais views</option>
+          <option value="likes">Mais curtidas</option>
+          <option value="comentarios">Mais comentários</option>
+          <option value="engajamento">Maior engajamento</option>
+        </select>
+        <span class="placar"><b id="conta">0</b> criativos</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+
+<section class="swipers" id="swipers" role="tabpanel" aria-labelledby="aba-swipers">
+
+  <div class="stats-grade" id="stats-globais"></div>
+
+  <div class="perfis-grade" id="grade-perfis"></div>
+
+
+
+  <div class="pendentes-bloco">
+
+    <div class="pendentes-head">
+
+      <h3>Pendentes de Coleta</h3>
+
+      <span class="pendentes-count"><b id="pendentes-total">0</b> perfis</span>
+
+      <label class="busca pendentes-busca">
+
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+
+        <input id="q-pendentes" type="search" placeholder="Buscar pendente…" autocomplete="off">
+
+      </label>
+
+    </div>
+
+    <div class="pendentes-lista" id="pendentes-lista"></div>
+
+  </div>
+
+</section>
+
+
+
+<main id="vista-criativos" role="tabpanel" aria-labelledby="aba-criativos" hidden>
+
+  <div id="swipe-pessoal" hidden><p>Seus favoritos neste navegador. Abra uma ficha para salvar ou remover um criativo.</p><button class="bt" id="exportar-favoritos">Exportar favoritos</button> <label class="bt">Importar favoritos <input id="importar-favoritos" type="file" accept="application/json" hidden></label></div>
+
+  <p id="aviso-catalogo" role="status"></p>
+
+  <div class="perfil-cabecalho" id="perfil-cabecalho" hidden></div>
+
+  <div class="grade" id="grade"></div>
+
+  <div id="sentinela"></div>
+
+</main>
+
+<footer>
+  <div class="madruga-logo" role="img" aria-label="TY SWIPE">
+    <span class="madruga-logo-mark" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#0A0E17" stroke="url(#grad-m)" stroke-width="1.8"/>
+        <path d="M7 23V9L16 17L25 9V23" stroke="url(#grad-m)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="madruga-logo-name" aria-hidden="true">TY SWIPE</span>
+  </div>
+  <div class="rodape-by">Engine de Inteligência de Virais desenvolvida com exclusividade para <strong>TY</strong></div>
+</footer>
+
+
+
+<div class="capa-tela" id="tela" role="dialog" aria-modal="true" aria-label="Detalhe do criativo">
+
+  <div class="ficha" id="ficha"></div>
+
+  <p class="dica"><kbd>Esc</kbd> fechar · <kbd>←</kbd> <kbd>→</kbd> navegar</p>
+
+</div>
+
+
+
+<script>
+
+  window.MESA_MODO = "local";
+
+  window.MESA_CONFIG = {"busca":["dados/swipe-busca-1.js","dados/swipe-busca-2.js","dados/swipe-busca-3.js","dados/swipe-busca-4.js","dados/swipe-busca-5.js","dados/swipe-busca-6.js","dados/swipe-busca-7.js","dados/swipe-busca-8.js","dados/swipe-busca-9.js"]};
+
+  </script>
+
+<script src="dados/swipe-dados-1.js"></script>
+
+<script src="dados/swipe-dados-2.js"></script>
+
+<script src="dados/swipe-dados-3.js"></script>
+
+<script src="dados/perfis-meta.js"></script>
+
+<!-- Metadados de perfil (seguidores etc.) num bloco de dados, nao de codigo:
+
+     se um build antigo deixar o placeholder sem substituir, o painel apenas
+
+     fica sem o dado em vez de quebrar o script inteiro. -->
+
+<!-- metadados de perfil: dados/perfis-meta.js -->
+
+<script>
+
+</script>
+
+<script src="assets/pendentes.js"></script>
+
+<!-- Ajustes do painel /admin (criativos/perfis novos, edições, remoções). Gerado na VPS
+
+     pelo servidor/admin.js; fora dela o arquivo não existe e o site segue só com o catálogo. -->
+
+<script src="ajustes/ajustes.js?v=20261009_v3"></script>
+<script src="assets/swipe-frames.js?v=20261009_v3"></script>
+<script src="assets/perfis-ui-logica.js?v=20261009_v3"></script>
+<script src="dados/perfis-nichos.js?v=20261009_v3"></script>
+<script src="assets/swipe.js?v=20261009_v3"></script>
+
+
+<div class="capa-tela" id="modal-novo-perfil" role="dialog" aria-modal="true" style="display:none;align-items:center;justify-content:center;z-index:9999;">
+  <div class="ficha" style="max-width:440px;width:90%;margin:auto;padding:24px;border-radius:12px;background:var(--bg-raised, #161B22);border:1px solid var(--line, #30363D);box-shadow:0 12px 36px rgba(0,0,0,0.6);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <h3 style="margin:0;font-size:16px;color:#fff;">+ Monitorar Perfil do Instagram</h3>
+      <button class="bt" id="btn-fechar-modal" type="button" style="padding:4px 8px;">✕</button>
+    </div>
+    <form id="form-novo-perfil" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="display:block;font-size:12px;color:var(--dim,#8B9AAB);margin-bottom:6px;">Username do Instagram (@):</label>
+        <input type="text" id="input-username" required placeholder="ex: rodrigo.marketing" style="width:100%;box-sizing:border-box;background:#0D1117;border:1px solid #30363D;border-radius:6px;padding:8px 12px;color:#fff;font-family:inherit;">
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;color:var(--dim,#8B9AAB);margin-bottom:6px;">Nicho / Categoria:</label>
+        <select id="input-category" style="width:100%;box-sizing:border-box;background:#0D1117;border:1px solid #30363D;border-radius:6px;padding:8px 12px;color:#fff;font-family:inherit;">
+          <option value="Marketing Digital">Marketing Digital</option>
+          <option value="Infoprodutos & PLR">Infoprodutos &amp; PLR</option>
+          <option value="Finanças & Investimentos">Finanças &amp; Investimentos</option>
+          <option value="Saúde & Bem Estar">Saúde &amp; Bem Estar</option>
+          <option value="Curiosidades & Fatos">Curiosidades &amp; Fatos</option>
+          <option value="Geral">Geral</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;color:var(--dim,#8B9AAB);margin-bottom:6px;">Frequência de Atualização:</label>
+        <select id="input-interval" style="width:100%;box-sizing:border-box;background:#0D1117;border:1px solid #30363D;border-radius:6px;padding:8px 12px;color:#fff;font-family:inherit;">
+          <option value="6">A cada 6 horas</option>
+          <option value="12" selected>A cada 12 horas</option>
+          <option value="24">A cada 24 horas</option>
+        </select>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px;">
+        <button type="button" class="bt" id="btn-cancelar-modal">Cancelar</button>
+        <button type="submit" class="bt" id="btn-salvar-modal" style="background:#1F8BF5;border-color:#1F8BF5;color:#fff;font-weight:600;">Monitorar Perfil</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="modal-ig-session" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;z-index:999999;background:rgba(4,6,10,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px;">
+  <div class="ficha" style="max-width:540px;width:100%;margin:auto;padding:26px;border-radius:14px;background:#131B26;border:1px solid #2D3A4F;box-shadow:0 25px 60px rgba(0,0,0,0.8);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="margin:0;font-size:17px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;">
+        <span style="color:#00F0FF;">🔑</span> Conectar ao GitHub (para o botão Atualizar agora)
+      </h3>
+      <button class="bt" type="button" onclick="window.fecharModalSession()" style="padding:4px 10px;font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <p style="font-size:13px;color:#8B9AAB;line-height:1.55;margin-bottom:16px;">
+      Cole abaixo um <strong>token do GitHub</strong> (fine-grained, com permissão de Actions neste repositório). Ele fica só no seu navegador e serve para o botão <strong>Atualizar agora</strong> disparar a coleta na nuvem:
+    </p>
+    <div id="status-session-atual" style="padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid #2D3A4F;font-size:12.5px;color:#94A3B8;margin-bottom:16px;">
+      Status: Verificando…
+    </div>
+    <form id="form-ig-session" onsubmit="window.salvarModalSession(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="display:block;font-size:12px;font-weight:600;color:#CBD5E1;margin-bottom:6px;">Cookie ou Linha de Cookies Completa:</label>
+        <textarea id="input-sessionid" rows="3" placeholder="Cole aqui seu token do GitHub (começa com github_pat_...)" style="width:100%;box-sizing:border-box;background:#0A0E14;border:1px solid #2D3A4F;border-radius:8px;padding:10px 14px;color:#fff;font-family:inherit;font-size:12.5px;outline:none;resize:vertical;"></textarea>
+      </div>
+      <div style="font-size:11.5px;color:#64748B;line-height:1.4;">
+        💡 <strong>Dica:</strong> O token fica guardado só neste navegador (localStorage) e nunca vai para a nuvem. A coleta do Instagram usa a sessão guardada como segredo no GitHub.
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:8px;">
+        <button type="button" class="bt" onclick="window.fecharModalSession()" style="cursor:pointer;padding:8px 16px;">Cancelar</button>
+        <button type="submit" class="bt" id="btn-salvar-session" style="background:#00F0FF;border-color:#00F0FF;color:#000;font-weight:700;cursor:pointer;padding:8px 18px;">Salvar Sessão</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="modal-sync-custom" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;z-index:999999;background:rgba(4,6,10,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px;">
+  <div class="ficha" style="max-width:480px;width:100%;margin:auto;padding:26px;border-radius:14px;background:#131B26;border:1px solid #2D3A4F;box-shadow:0 25px 60px rgba(0,0,0,0.8);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="margin:0;font-size:17px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;">
+        <span style="color:#00F0FF;">⚡</span> Sincronizar Perfil Específico
+      </h3>
+      <button class="bt" type="button" onclick="window.fecharModalSyncCustom()" style="padding:4px 10px;font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <p style="font-size:13px;color:#8B9AAB;line-height:1.55;margin-bottom:16px;">
+      Informe o <strong>@perfil</strong> do Instagram que deseja sincronizar agora. O TY SWIPE irá direto no perfil, buscará as postagens e reels atuais, atualizará as métricas de views/likes e recalculará os virais:
+    </p>
+    <form id="form-sync-custom" onsubmit="window.executarSyncCustom(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="display:block;font-size:12px;font-weight:600;color:#CBD5E1;margin-bottom:6px;">@ do Perfil no Instagram:</label>
+        <div style="display:flex;align-items:center;background:#0A0E14;border:1px solid #2D3A4F;border-radius:8px;padding:0 12px;">
+          <span style="color:#64748B;font-weight:700;font-size:15px;margin-right:4px;">@</span>
+          <input type="text" id="input-sync-custom-user" placeholder="ex: drericberg, plantyou, etc." required style="flex:1;background:transparent;border:none;padding:10px 0;color:#fff;font-family:inherit;font-size:14px;outline:none;">
+        </div>
+      </div>
+      <div id="resultado-sync-custom" style="display:none;padding:12px;border-radius:8px;font-size:13px;line-height:1.45;"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:6px;">
+        <button type="button" class="bt" onclick="window.fecharModalSyncCustom()" style="cursor:pointer;padding:8px 16px;">Fechar</button>
+        <button type="submit" class="bt" id="btn-executar-sync-custom" style="background:#00F0FF;border-color:#00F0FF;color:#000;font-weight:700;cursor:pointer;padding:8px 18px;display:inline-flex;align-items:center;gap:6px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          Sincronizar Agora
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('btn-add-perfil');
+    var modal = document.getElementById('modal-novo-perfil');
+    var fechar = document.getElementById('btn-fechar-modal');
+    var cancelar = document.getElementById('btn-cancelar-modal');
+    var form = document.getElementById('form-novo-perfil');
+    var salvar = document.getElementById('btn-salvar-modal');
+
+    if(btn && modal){
+      btn.onclick = function(){ modal.style.display = 'flex'; };
+      fechar.onclick = function(){ modal.style.display = 'none'; };
+      cancelar.onclick = function(){ modal.style.display = 'none'; };
+      modal.onclick = function(e){ if(e.target === modal) modal.style.display = 'none'; };
+
+      form.onsubmit = async function(e){
+        e.preventDefault();
+        var u = document.getElementById('input-username').value.trim();
+        var cat = document.getElementById('input-category').value;
+        var interval = parseInt(document.getElementById('input-interval').value);
+        salvar.disabled = true;
+        salvar.innerText = 'Cadastrando...';
+        try {
+          var res = await fetch('/api/accounts', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username: u, category: cat, sync_interval_hours: interval})
+          });
+          var data = await res.json();
+          alert(data.message || 'Perfil cadastrado com sucesso! A sincronização automática foi iniciada.');
+          modal.style.display = 'none';
+          document.getElementById('input-username').value = '';
+        } catch(err) {
+          alert('Erro ao cadastrar perfil: ' + err.message);
+        } finally {
+          salvar.disabled = false;
+          salvar.innerText = 'Monitorar Perfil';
+        }
+      };
+    }
+
+    var btnSync = document.getElementById('btn-sync-main');
+    var syncTimer = null;
+
+    async function checarStatusSincronizacao(){
+      try {
+        var res = await fetch('/api/sync/status');
+        if(!res.ok) return;
+        var st = await res.json();
+        if(st.is_running && btnSync){
+          btnSync.classList.add('girando');
+          btnSync.disabled = true;
+          btnSync.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15" class="girando"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg> ' +
+            '<span>Sincronizando: ' + st.processed + '/' + st.total_accounts + ' (' + (st.current_account || '') + ') • +' + st.reels_added + ' novos</span>';
+        } else if(!st.is_running && syncTimer){
+          clearInterval(syncTimer);
+          syncTimer = null;
+          if(btnSync){
+            btnSync.classList.remove('girando');
+            btnSync.disabled = false;
+            btnSync.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg> Sincronizar';
+          }
+          if(st.finished_at){
+            alert('✅ Sincronização de todos os perfis concluída!\n\n' + st.processed + ' perfis analisados\n' + st.reels_added + ' novos vídeos adicionados\n' + st.reels_updated + ' métricas atualizadas');
+            location.reload();
+          }
+        }
+      } catch(e){}
+    }
+
+    if(btnSync){
+      btnSync.onclick = async function(){
+        if(btnSync.classList.contains('girando') || syncTimer) return;
+        btnSync.classList.add('girando');
+        btnSync.disabled = true;
+        btnSync.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15" class="girando"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg> <span>Iniciando sincronização geral...</span>';
+        try {
+          var res = await fetch('/api/sync/run?limit=0', {method: 'POST'});
+          var data = await res.json();
+          if(!syncTimer){
+            syncTimer = setInterval(checarStatusSincronizacao, 1500);
+          }
+        } catch(err) {
+          alert('Erro ao iniciar sincronização: ' + err.message);
+          btnSync.classList.remove('girando');
+          btnSync.disabled = false;
+          btnSync.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg> Sincronizar';
+        }
+      };
+      // Checa se já havia sincronização rodando ao carregar a página
+      checarStatusSincronizacao();
+    }
+
+    window.abrirModalSession = function(){
+      var modal = document.getElementById('modal-ig-session');
+      if(!modal) return;
+      modal.style.setProperty('display', 'flex', 'important');
+      window.atualizarStatusSession();
+    };
+
+    window.fecharModalSession = function(){
+      var modal = document.getElementById('modal-ig-session');
+      if(!modal) return;
+      modal.style.setProperty('display', 'none', 'important');
+    };
+
+    window.atualizarStatusSession = async function(){
+      var statusEl = document.getElementById('status-session-atual');
+      if(!statusEl) return;
+      var localSid = localStorage.getItem('madruga_ig_session');
+      try {
+        var res = await fetch('/api/settings/session');
+        if(res.ok){
+          var d = await res.json();
+          if(d.configured){
+            statusEl.innerHTML = '🟢 <strong style="color:#10B981;">Sessão Ativa:</strong> <code>' + (d.masked || 'Configurada') + '</code>';
+            return;
+          }
+        }
+      } catch(e){}
+      if(localSid){
+        var masked = (localSid.slice(0, 6) + '...' + localSid.slice(-4));
+        statusEl.innerHTML = '🟡 <strong style="color:#F59E0B;">Sessão salva no navegador:</strong> <code>' + masked + '</code>';
+      } else {
+        statusEl.innerHTML = '⚪ <span style="color:#94A3B8;">Nenhuma sessão configurada (modo anônimo com fallback local).</span>';
+      }
+    };
+
+    window.salvarModalSession = async function(e){
+      if(e && e.preventDefault) e.preventDefault();
+      var input = document.getElementById('input-sessionid');
+      var val = input ? input.value.trim() : '';
+      if(!val) return alert('Por favor, informe o sessionid.');
+      var btn = document.getElementById('btn-salvar-session');
+      if(btn){ btn.disabled = true; btn.textContent = 'Salvando…'; }
+      localStorage.setItem('madruga_ig_session', val);
+      try {
+        var res = await fetch('/api/settings/session', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({session_id: val})
+        });
+        var d = await res.json();
+        alert(d.message || 'Sessão do Instagram salva e ativada com sucesso!');
+      } catch(err){
+        alert('Sessão salva com sucesso no navegador!');
+      } finally {
+        if(btn){ btn.disabled = false; btn.textContent = 'Salvar Sessão'; }
+        if(input) input.value = '';
+        window.fecharModalSession();
+      }
+    };
+
+    window.abrirModalSyncCustom = function(username){
+      var m = document.getElementById('modal-sync-custom');
+      if(!m) return;
+      m.style.setProperty('display', 'flex', 'important');
+      var inp = document.getElementById('input-sync-custom-user');
+      if(inp){
+        if(username) inp.value = username.replace('@', '');
+        inp.focus();
+      }
+      var res = document.getElementById('resultado-sync-custom');
+      if(res) res.style.display = 'none';
+    };
+
+    window.fecharModalSyncCustom = function(){
+      var m = document.getElementById('modal-sync-custom');
+      if(m) m.style.setProperty('display', 'none', 'important');
+    };
+
+    window.executarSyncCustom = async function(e){
+      if(e && e.preventDefault) e.preventDefault();
+      var inp = document.getElementById('input-sync-custom-user');
+      var val = inp ? inp.value.trim().replace('@', '') : '';
+      if(!val) return alert('Por favor, informe o @ do perfil.');
+      
+      var btn = document.getElementById('btn-executar-sync-custom');
+      var res = document.getElementById('resultado-sync-custom');
+      if(btn){
+        btn.disabled = true;
+        btn.innerHTML = '<span class="girando">🔄</span> Sincronizando @' + val + '…';
+      }
+      if(res){
+        res.style.display = 'block';
+        res.style.background = 'rgba(0,240,255,0.06)';
+        res.style.border = '1px solid rgba(0,240,255,0.25)';
+        res.style.color = '#00F0FF';
+        res.innerHTML = 'Buscando perfil e postagens recentes no Instagram…';
+      }
+      
+      try {
+        var response = await fetch('/api/sync/account', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({username: val})
+        });
+        var d = await response.json();
+        if(d.status === 'success'){
+          res.style.background = 'rgba(16,185,129,0.1)';
+          res.style.border = '1px solid rgba(16,185,129,0.3)';
+          res.style.color = '#10B981';
+          res.innerHTML = '<strong>' + d.message + '</strong><br><small style="color:#94A3B8;">A página será recarregada em instantes para exibir os novos vídeos.</small>';
+          setTimeout(function(){ location.reload(); }, 2500);
+        } else {
+          res.style.background = 'rgba(239,68,68,0.1)';
+          res.style.border = '1px solid rgba(239,68,68,0.3)';
+          res.style.color = '#EF4444';
+          res.innerHTML = '<strong>Erro:</strong> ' + (d.message || d.detail || 'Falha ao sincronizar.');
+        }
+      } catch(err){
+        if(res){
+          res.style.background = 'rgba(239,68,68,0.1)';
+          res.style.border = '1px solid rgba(239,68,68,0.3)';
+          res.style.color = '#EF4444';
+          res.innerHTML = '<strong>Erro de conexão:</strong> ' + err.message;
+        }
+      } finally {
+        if(btn){
+          btn.disabled = false;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg> Sincronizar Agora';
+        }
+      }
+    };
+  })();
+</script>
+
+<!-- TY SWIPE na nuvem: liga os botões ao GitHub Actions (sobrepõe o modo servidor local) -->
+<script>
+(function(){
+  var REPO = 'costagui527-cell/ty-swipe';
+  var WF = 'update.yml';
+  function pat(){ try { return localStorage.getItem('gh_pat') || ''; } catch(e){ return ''; } }
+
+  window.abrirModalSession = function(){
+    var m = document.getElementById('modal-ig-session');
+    if(m){ m.style.setProperty('display','flex','important'); window.atualizarStatusSession(); }
+  };
+  window.fecharModalSession = function(){
+    var m = document.getElementById('modal-ig-session');
+    if(m) m.style.setProperty('display','none','important');
+  };
+  window.atualizarStatusSession = function(){
+    var el = document.getElementById('status-session-atual'); if(!el) return;
+    var p = pat();
+    el.innerHTML = p
+      ? '🟢 <strong style="color:#10B981;">Conectado ao GitHub</strong> <code>' + p.slice(0,10) + '…' + p.slice(-4) + '</code>'
+      : '⚪ <span style="color:#94A3B8;">Cole um token do GitHub para habilitar o botão “Atualizar agora”.</span>';
+  };
+  window.salvarModalSession = function(e){
+    if(e && e.preventDefault) e.preventDefault();
+    var inp = document.getElementById('input-sessionid');
+    var v = inp ? inp.value.trim() : '';
+    if(!v) return alert('Cole o token do GitHub.');
+    try { localStorage.setItem('gh_pat', v); } catch(err){}
+    if(inp) inp.value = '';
+    window.atualizarStatusSession();
+    window.fecharModalSession();
+    alert('Conectado! Agora o botão “Atualizar agora” dispara a coleta na nuvem.');
+  };
+
+  async function dispararColeta(){
+    var token = pat();
+    if(!token){ window.abrirModalSession(); return; }
+    var btn = document.getElementById('btn-sync-main');
+    var antigo = btn ? btn.innerHTML : '';
+    if(btn){ btn.disabled = true; btn.classList.add('girando'); btn.innerHTML = '<span>Disparando atualização…</span>'; }
+    try {
+      var r = await fetch('https://api.github.com/repos/' + REPO + '/actions/workflows/' + WF + '/dispatches', {
+        method: 'POST',
+        headers: {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'},
+        body: JSON.stringify({ref: 'main'})
+      });
+      if(r.status === 204){
+        alert('✅ Atualização iniciada na nuvem!\n\nEla roda em segundo plano (alguns minutos). Quando terminar, recarregue esta página.\n\nAcompanhe em:\nhttps://github.com/' + REPO + '/actions');
+      } else if(r.status === 401 || r.status === 403){
+        try { localStorage.removeItem('gh_pat'); } catch(e){}
+        alert('Token do GitHub inválido ou sem permissão. Conecte de novo.');
+        window.abrirModalSession();
+      } else {
+        var t = await r.text();
+        alert('Não consegui disparar (HTTP ' + r.status + ').\n' + t.slice(0, 200));
+      }
+    } catch(err){
+      alert('Erro de conexão com o GitHub: ' + err.message);
+    } finally {
+      if(btn){ btn.disabled = false; btn.classList.remove('girando'); btn.innerHTML = antigo; }
+    }
+  }
+
+  var btnSync = document.getElementById('btn-sync-main');
+  if(btnSync) btnSync.onclick = dispararColeta;
+
+  window.abrirModalSyncCustom = function(){
+    alert('Neste site, use o botão “Atualizar agora” no topo. Ele atualiza todos os perfis na nuvem de uma vez.');
+  };
+  window.executarSyncCustom = function(e){ if(e && e.preventDefault) e.preventDefault(); };
+
+  var addBtn = document.getElementById('btn-add-perfil');
+  if(addBtn) addBtn.onclick = function(){
+    alert('Para incluir perfis novos, me mande a lista que eu adiciono na coleta da nuvem.');
+  };
+})();
+</script>

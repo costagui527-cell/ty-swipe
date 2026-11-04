@@ -1,0 +1,43 @@
+name: update
+on:
+  schedule:
+    - cron: "0 8 * * *"   # todo dia ~05h (BRT)
+  workflow_dispatch: {}    # botão "Atualizar agora"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r collector/requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Coletar
+        env:
+          IG_SESSION: ${{ secrets.IG_SESSION }}
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+          MAX_ANALYZE: "30"
+        run: python collector/collect.py
+
+      - name: Publicar
+        run: |
+          git config user.name "ty-swipe-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "update $(date -u +%F_%H:%M)" || echo "sem mudanças"
+          git push
