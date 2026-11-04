@@ -86,9 +86,13 @@
     if(avisoSemDados) avisoSemDados.textContent = 'Dados não encontrados. Mantenha a pasta dados/ ao lado do HTML.';
     return;
   }
-  var config = window.MESA_CONFIG || {}, meuSwipe = false, pagina = 0, pedidoFicha = 0;
+  var config = window.MESA_CONFIG || {}, meuSwipe = false, modoDia = false, pagina = 0, pedidoFicha = 0;
   var favoritos = new Set();
   try { var salvos = JSON.parse(localStorage.getItem('mesa-favoritos-v1') || '[]'); if(Array.isArray(salvos)) favoritos = new Set(salvos.filter(function(x){return typeof x === 'string';})); } catch(e) {}
+  // "Do Dia": top das últimas 48h (views + comentários), calculado na nuvem (dados/do-dia.js)
+  var DO_DIA = (window.MESA_DO_DIA && Array.isArray(window.MESA_DO_DIA.codigos)) ? window.MESA_DO_DIA : {codigos: [], atualizado_em: ''};
+  var DIA_SET = new Set(DO_DIA.codigos);
+  var DIA_RANK = {}; DO_DIA.codigos.forEach(function(c, i){ DIA_RANK[c] = i; });
   function identidade(c){ return c.codigo || c.id || ((c.perfil || '') + ':' + c.number); }
   function aviso(texto){ var el = document.getElementById('aviso-catalogo'); if(el) el.textContent = texto; }
   // ---- Carregamento de Lotes (desacoplado e com cache em memória) --------
@@ -366,6 +370,9 @@
     } else if(nome === 'meu'){
       h1.textContent = 'Meu swipe';
       sub.textContent = 'Criativos salvos neste navegador';
+    } else if(nome === 'dia'){
+      h1.textContent = '☀️ Do Dia';
+      sub.textContent = 'Top ' + DO_DIA.codigos.length + ' das últimas 48h · views + comentários' + (DO_DIA.atualizado_em ? ' · ' + DO_DIA.atualizado_em : '');
     } else {
       h1.textContent = 'Biblioteca';
       sub.textContent = fmt(DADOS.length) + ' criativos · busca em transcrições, legendas, perfis e hashtags';
@@ -376,17 +383,20 @@
     atualizarCabecalhoPagina(nome);
     var ehSwipers = nome === 'swipers';
     meuSwipe = nome === 'meu';
+    modoDia = nome === 'dia';
     var abaMeu = document.getElementById('aba-meu');
     if(abaMeu){abaMeu.classList.toggle('ativa', meuSwipe); abaMeu.setAttribute('aria-selected', String(meuSwipe));}
+    var abaDia = document.getElementById('aba-dia');
+    if(abaDia){abaDia.classList.toggle('ativa', modoDia); abaDia.setAttribute('aria-selected', String(modoDia));}
     var pessoal = document.getElementById('swipe-pessoal'); if(pessoal) pessoal.hidden = !meuSwipe;
     secaoSwipers.hidden = !ehSwipers;
     vistaCriativos.hidden = ehSwipers;
     controlesCriativos.hidden = ehSwipers;
     if(controlesSwipers) controlesSwipers.hidden = !ehSwipers;
     abaSwipers.classList.toggle('ativa', ehSwipers);
-    abaCriativos.classList.toggle('ativa', !ehSwipers && !meuSwipe);
+    abaCriativos.classList.toggle('ativa', nome === 'criativos');
     abaSwipers.setAttribute('aria-selected', String(ehSwipers));
-    abaCriativos.setAttribute('aria-selected', String(!ehSwipers && !meuSwipe));
+    abaCriativos.setAttribute('aria-selected', String(nome === 'criativos'));
     if(ehSwipers) renderPerfis(); else filtrar();
   }
   abaSwipers.addEventListener('click', function(){ mostrarAba('swipers'); });
@@ -394,6 +404,8 @@
   window.mostrarAba = mostrarAba;
   var abaMeu = document.getElementById('aba-meu');
   if(abaMeu) abaMeu.onclick = function(){ q.value = ''; selPerfil.value = ''; selStatus.value = ''; mostrarAba('meu'); };
+  var abaDia = document.getElementById('aba-dia');
+  if(abaDia) abaDia.onclick = function(){ q.value = ''; selPerfil.value = ''; selStatus.value = ''; mostrarAba('dia'); };
   var exportar = document.getElementById('exportar-favoritos');
   if(exportar) exportar.onclick = function(){
     var url = URL.createObjectURL(new Blob([JSON.stringify(Array.from(favoritos), null, 2)], {type:'application/json'}));
@@ -1252,13 +1264,18 @@
       var batePeriodo = true;
       if(diasMax){ var d = diasNoAr(c); batePeriodo = d !== null && d <= diasMax; }
       return bateTexto && batePerfil && bateStatus && bateViews && batePeriodo &&
-             (!meuSwipe || favoritos.has(identidade(c)));
+             (!meuSwipe || favoritos.has(identidade(c))) &&
+             (!modoDia || DIA_SET.has(c.codigo));
     });
-    var modo = ordem.value, modo2 = ordem2 ? ordem2.value : '';
-    lista.sort(function(a,b){
-      return compararPor(modo, a, b) || (modo2 ? compararPor(modo2, a, b) : 0) ||
-             ((a.perfil || '').localeCompare(b.perfil || '') || (a.number - b.number));
-    });
+    if(modoDia){
+      lista.sort(function(a, b){ return (DIA_RANK[a.codigo] - DIA_RANK[b.codigo]); });
+    } else {
+      var modo = ordem.value, modo2 = ordem2 ? ordem2.value : '';
+      lista.sort(function(a, b){
+        return compararPor(modo, a, b) || (modo2 ? compararPor(modo2, a, b) : 0) ||
+               ((a.perfil || '').localeCompare(b.perfil || '') || (a.number - b.number));
+      });
+    }
     conta.textContent = lista.length;
     desenhar(true);
     renderPerfilCabecalho();

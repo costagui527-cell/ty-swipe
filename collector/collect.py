@@ -290,6 +290,32 @@ async def main():
                 "analysis": analysis,
             }
 
+    # --- Top do dia: melhores das últimas 48h (views + comentários), somando TODOS os perfis ---
+    agora = datetime.now(timezone.utc)
+
+    def horas_desde(c):
+        try:
+            dt = datetime.strptime(c["data_publicacao"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+            return (agora - dt).total_seconds() / 3600.0
+        except Exception:
+            return 1e9
+
+    def ranquear(cs):
+        if not cs:
+            return []
+        maxv = max((c["v"] for c in cs), default=0) or 1
+        maxk = max((c["k"] for c in cs), default=0) or 1
+        # peso igual para alcance (views) e engajamento (comentários), cada um normalizado
+        return sorted(cs, key=lambda c: -(0.5 * c["v"] / maxv + 0.5 * c["k"] / maxk))
+
+    todos = list(criativos.values())
+    escolha = ranquear([c for c in todos if horas_desde(c) <= 48])[:10]
+    if len(escolha) < 10:  # dia fraco: completa com o melhor dos últimos 7 dias
+        extra = [c for c in ranquear([c for c in todos if horas_desde(c) <= 168]) if c not in escolha]
+        escolha += extra[: 10 - len(escolha)]
+    do_dia = {"codigos": [c["codigo"] for c in escolha], "atualizado_em": agora.strftime("%d/%m %H:%M") + " UTC"}
+    escrever("dados/do-dia.js", "window.MESA_DO_DIA=" + json.dumps(do_dia, ensure_ascii=False) + ";\n")
+
     nichos = {u: NICHO for u in PERFIS}
     ajustes = {"versao": 1, "atualizado_em": datetime.now(timezone.utc).isoformat(),
                "criativos": criativos, "editados": {}, "perfis": {}, "removidos": [],
