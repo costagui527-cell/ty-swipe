@@ -105,6 +105,14 @@ async def coletar_perfil(context, username):
     await page.wait_for_timeout(1500)
     if tarefas:
         await asyncio.gather(*list(tarefas), return_exceptions=True)
+    url_final = page.url
+    titulo = ""
+    try:
+        titulo = (await page.title())[:60]
+    except Exception:
+        pass
+    if not midias:
+        print(f"  DIAG @{username}: sem dados | url={url_final} | titulo={titulo!r} | perfil_keys={list(perfil.keys())[:6]}")
     await page.close()
     return midias, perfil
 
