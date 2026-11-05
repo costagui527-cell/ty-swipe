@@ -1,1 +1,1 @@
-window.MESA_DO_DIA={"codigos": [], "atualizado_em": "04/11 19:32 UTC"};
+window.MESA_DO_DIA={"codigos": [], "atualizado_em": "05/11 09:04 UTC"};
